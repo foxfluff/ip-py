@@ -1,0 +1,6 @@
+===============================================================================
+| 25 Feb 2016                                                                 |
+-------------------------------------------------------------------------------
+
+ - Completely restructured the project, removed old code, rewriting code for
+   the new infrastructure.
