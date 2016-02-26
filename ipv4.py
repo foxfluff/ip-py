@@ -14,38 +14,39 @@ class Ipv4(Ip):
 
 
     def __repr__(self):
-        pass
+        return "%s('%s')" %("Ipv4", str(self))
 
 
     def __str__(self):
-        pass
+        return ".".join(tuple(self))
 
 
     def __tuple__(self):
         pass
 
 
-    def __index__(self):
-        pass
+    def __index__(self, index):
+        return tuple(self)[index]
 
 
-    def __add__(self):
-        pass
+    def __add__(self, other):
+        return self.address + other
 
 
-    def __sub__(self):
-        pass
+    def __sub__(self, other):
+        return self.address - other
 
 
-    def __and__(self):
-        pass
+    def __and__(self, other):
+        return self.address & other
 
 
-    def __or__(self):
-        pass
+    def __or__(self, other):
+        return self.address | other
 
 
     def __xor__(self):
-        pass
+        return self.address ^ other
+
 
 __all__ = ['Ipv4']

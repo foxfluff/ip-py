@@ -17,48 +17,48 @@ class Ip(object):
 
 
     def __repr__(self):
-        pass
+        return "%s(%s)" %('Ip', self.address)
 
 
     def __add__(self, other):
-        pass
+        return self.address + other
 
 
     def __sub__(self, other):
-        pass
+        return self.address - other
 
 
     def __and__(self, other):
-        pass
+        return self.address & other
 
 
     def __or__(self, other):
-        pass
+        return self.address | other
 
 
     def __xor__(self, other):
-        pass
+        return self.address ^ other
 
 
     def __eq__(self, other):
-        pass
+        return self.address == other
 
 
     def __ne__(self, other):
-        pass
+        return self.address != other
 
 
     def __gt__(self, other):
-        pass
+        return self.address > other
 
 
     def __ge__(self, other):
-        pass
+        return self.address >= other
 
 
     def __lt__(self, other):
-        pass
+        return self.address < other
 
 
     def __le__(self, other):
-        pass
+        return self.address <= other
