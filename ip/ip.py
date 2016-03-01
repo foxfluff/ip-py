@@ -9,7 +9,7 @@ class Ip(object):
     def address(self, address):
         # no definied structure for super, so just going to take an int and
         # store it
-        if type(address) != int:
+        if type(address) != int and type(address) != long:
             raise TypeError
         self._address = address
 
@@ -23,23 +23,23 @@ class Ip(object):
 
 
     def __add__(self, other):
-        return self.address + other
+        return Ip(self.address + other)
 
 
     def __sub__(self, other):
-        return self.address - other
+        return Ip(self.address - other)
 
 
     def __and__(self, other):
-        return self.address & other
+        return Ip(self.address & other)
 
 
     def __or__(self, other):
-        return self.address | other
+        return Ip(self.address | other)
 
 
     def __xor__(self, other):
-        return self.address ^ other
+        return Ip(self.address ^ other)
 
 
     def __eq__(self, other):
