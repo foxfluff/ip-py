@@ -1,6 +1,6 @@
-from ip import Ip
+import ip
 
-class Ipv4(Ip):
+class Ipv4(ip.Ip):
 
     _delimiter = '.'
 
@@ -26,13 +26,13 @@ class Ipv4(Ip):
                 map(int, addr.split(self._delimiter))
                 )
 
-        if type(address) == str:
+        if isinstance(address, str):
             self._address = string_addr(address)
-        elif type(address) == tuple or type(address) == list:
+        elif isinstance(address, tuple) or isinstance(address, list):
             self._address = list_addr(address)
-        elif type(address) == int or type(address) == long:
+        elif isinstance(address, int) or isinstance(address, long):
             self._address = address
-        elif type(address) == Ipv4:
+        elif isinstance(address, Ipv4):
             self._address = list_addr(list(address))
         else:
             raise TypeError(

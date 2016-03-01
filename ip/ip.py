@@ -9,7 +9,7 @@ class Ip(object):
     def address(self, address):
         # no definied structure for super, so just going to take an int and
         # store it
-        if type(address) != int and type(address) != long:
+        if not isinstance(address, int) and not isinstance(address, long):
             raise TypeError
         self._address = address
 
