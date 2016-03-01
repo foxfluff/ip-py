@@ -1,19 +1,21 @@
-# -*- coding: utf-8 -*-
-
 class Ip(object):
 
     @property
     def address(self):
-        pass
+        return self._address
 
 
     @address.setter
     def address(self, address):
-        pass
+        # no definied structure for super, so just going to take an int and
+        # store it
+        if type(address) != int:
+            raise TypeError
+        self._address = address
 
 
     def __init__(self, address):
-        pass
+        self.address = address
 
 
     def __repr__(self):
