@@ -8,6 +8,7 @@ addr1 = ip.Ip(1234)
 print 'self.address', addr1.address
 print 'repr        ', repr(addr1)
 print 'ip + 5      ', addr1 + 5, type(addr1 + 5)
+print 'ip - 5      ', addr1 + 5, type(addr1 - 5)
 print
 
 addr4_1 = ip.Ipv4('192.168.0.1')
@@ -20,3 +21,5 @@ print 'list        ', list(addr4_1), list(addr4_2)
 print 'tuple       ', tuple(addr4_1), tuple(addr4_2)
 print 'ip1 + 5     ', addr4_1 + 5, type(addr4_1 + 5)
 print 'ip2 + 5     ', addr4_2 + 5, type(addr4_2 + 5)
+print 'ip1 - 5     ', addr4_1 - 5, type(addr4_1 - 5)
+print 'ip2 - 5     ', addr4_2 - 5, type(addr4_2 - 5)
