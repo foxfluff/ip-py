@@ -6,6 +6,10 @@
  - Added test.py, allowing for easier debugging in the future
  - Moved ip.py, ipv4.py, ipv6.py, and __init.py__ to the ip directory for
    proper package usage
+ - Fixed bugs with new IPv4 initialization, now supports int/long to accomodate
+   for math operators which return int/long
+ - Fixed bugs with operators in Ip and Ipv4 where objects returned were builtin
+   types instead of Ip or Ipv4 respectively
 
 ===============================================================================
 | 26 Feb 2016                                                                 |
