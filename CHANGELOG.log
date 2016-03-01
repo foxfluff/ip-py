@@ -10,6 +10,10 @@
    for math operators which return int/long
  - Fixed bugs with operators in Ip and Ipv4 where objects returned were builtin
    types instead of Ip or Ipv4 respectively
+ - Fixed bugs with implementation of Ipv4 bitwise operators when being passed
+   another Ipv4 instance
+ - Fixed naming issue with indexing function (used __index__ instead of
+   __getitem__)
 
 ===============================================================================
 | 26 Feb 2016                                                                 |
