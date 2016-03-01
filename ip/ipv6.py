@@ -1,8 +1,10 @@
-# -*- coding: utf-8 -*-
-
-from .ip import Ip
+from ip import Ip
 
 class Ipv6(Ip):
+
+    @property
+    def address(self):
+        return super(Ipv6, self).address()
 
     @address.setter
     def address(self, address):
@@ -23,7 +25,7 @@ class Ipv6(Ip):
         return ":".join(tuple(self))
 
 
-    def __tuple__(self):
+    def __iter__(self):
         pass
 
 
