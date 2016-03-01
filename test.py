@@ -23,3 +23,8 @@ print 'ip1 + 5     ', addr4_1 + 5, type(addr4_1 + 5)
 print 'ip2 + 5     ', addr4_2 + 5, type(addr4_2 + 5)
 print 'ip1 - 5     ', addr4_1 - 5, type(addr4_1 - 5)
 print 'ip2 - 5     ', addr4_2 - 5, type(addr4_2 - 5)
+print 'ip1 | ip2   ', addr4_1 | addr4_2
+print 'ip1 & ip2   ', addr4_1 & addr4_2
+print 'ip1 ^ ip2   ', addr4_1 ^ addr4_2
+print 'ip1[0]      ', addr4_1[0]
+print 'ip2[0]      ', addr4_2[0]
