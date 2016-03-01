@@ -30,6 +30,13 @@ class Ipv4(Ip):
             self._address = string_addr(address)
         elif type(address) == tuple or type(address) == list:
             self._address = list_addr(address)
+        elif type(address) == int or type(address) == long:
+            self._address = address
+        else:
+            raise NotImplemented(
+                'Unsupported type for address initialization %s, (%s)' %(
+                    type(address), address)
+                )
 
 
     def __init__(self, address):
@@ -58,23 +65,23 @@ class Ipv4(Ip):
 
 
     def __add__(self, other):
-        return self.address + other
+        return Ipv4(self.address + other)
 
 
     def __sub__(self, other):
-        return self.address - other
+        return Ipv4(self.address - other)
 
 
     def __and__(self, other):
-        return self.address & other
+        return Ipv4(self.address & other)
 
 
     def __or__(self, other):
-        return self.address | other
+        return Ipv4(self.address | other)
 
 
     def __xor__(self, other):
-        return self.address ^ other
+        return Ipv4(self.address ^ other)
 
 
 __all__ = ['Ipv4']
