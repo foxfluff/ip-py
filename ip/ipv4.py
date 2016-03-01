@@ -32,9 +32,11 @@ class Ipv4(Ip):
             self._address = list_addr(address)
         elif type(address) == int or type(address) == long:
             self._address = address
+        elif type(address) == Ipv4:
+            self._address = list_addr(list(address))
         else:
-            raise NotImplemented(
-                'Unsupported type for address initialization %s, (%s)' %(
+            raise TypeError(
+                'Unsupported type for address initialization %s, (%s)' % (
                     type(address), address)
                 )
 
@@ -60,7 +62,7 @@ class Ipv4(Ip):
         return iter(map(int, addr))
 
 
-    def __index__(self, index):
+    def __getitem__(self, index):
         return tuple(self)[index]
 
 
@@ -76,12 +78,24 @@ class Ipv4(Ip):
         return Ipv4(self.address & other)
 
 
+    def __rand__(self, other):
+        return self & other
+
+
     def __or__(self, other):
         return Ipv4(self.address | other)
 
 
+    def __ror__(self, other):
+        return self | other
+
+
     def __xor__(self, other):
         return Ipv4(self.address ^ other)
+
+
+    def __rxor__(self, other):
+        return self ^ other
 
 
 __all__ = ['Ipv4']
