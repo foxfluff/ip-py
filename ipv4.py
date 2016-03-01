@@ -42,8 +42,17 @@ class Ipv4(Ip):
         return ".".join(tuple(self))
 
 
+    def __list__(self):
+        # converts an int to a list
+        # 0b11111111 11111111 11111111 11111111 -> [255, 255, 255, 255]
+        _addr = []
+        for i in range(4):
+            _addr += [255 & self.address >> (8 * (3 - i))]
+        return map(int, _addr)
+
+
     def __tuple__(self):
-        pass
+        return tuple(list(self))
 
 
     def __index__(self, index):
