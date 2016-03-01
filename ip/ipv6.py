@@ -29,7 +29,7 @@ class Ipv6(Ip):
         pass
 
 
-    def __index__(self, index):
+    def __getitem__(self, index):
         return tuple(self)[index]
 
 
@@ -49,7 +49,7 @@ class Ipv6(Ip):
         return self.address | other
 
 
-    def __xor__(self):
+    def __xor__(self, other):
         return self.address ^ other
 
 __all__ = ['Ipv6']
