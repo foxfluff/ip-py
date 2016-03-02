@@ -1,4 +1,17 @@
 ===============================================================================
+| 2 Mar 2016                                                                  |
+-------------------------------------------------------------------------------
+
+  TODO:
+  - Implement an inverse function (probably using ~) that is effectively
+    Ipv4(addr) ^ Ipv4('255.255.255.255')
+  - Define some useful predefined addresses like a loopback address or global
+    broadcast
+  - Document Ipv4
+  - Still have to do pretty much everything for Ipv6
+  - At some point have some sort of built in function to tunnel Ipv4 over Ipv6?
+
+===============================================================================
 | 1 Mar 2016                                                                  |
 -------------------------------------------------------------------------------
 
