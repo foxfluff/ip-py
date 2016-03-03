@@ -5,7 +5,6 @@ class Ipv6(Ip):
     _delimiter = ':'
     # technically speaking there is no global broadcast, need to find a better
     # term for this.
-    GLOBAL_BROADCAST = "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
 
     @property
     def address(self):
@@ -53,7 +52,6 @@ class Ipv6(Ip):
                     _addr[location:])
             if '' in _addr:
                 #indicates two '::', which is not possible in ipv6 addresses
-                print _addr, location
                 raise ValueError(
                     'Expected at most one "%s", IPv6 does not support more' %
                     (self._delimiter * 2))
@@ -127,7 +125,7 @@ class Ipv6(Ip):
 
 
     def __rand__(self, other):
-        return self.address & other
+        return self & other
 
 
     def __or__(self, other):
@@ -135,7 +133,7 @@ class Ipv6(Ip):
 
 
     def __ror__(self, other):
-        return self.address | other
+        return self | other
 
 
     def __xor__(self, other):
@@ -143,10 +141,10 @@ class Ipv6(Ip):
 
 
     def __rxor__(self, other):
-        return self.address ^ other
+        return self ^ other
 
 
     def __invert__(self):
-        return Ipv6(self ^ Ipv6(self.GLOBAL_BROADCAST))
+        return Ipv6(self ^ (2 ** 128 - 1))
 
 __all__ = ['Ipv6']
