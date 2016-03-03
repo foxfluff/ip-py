@@ -3,8 +3,6 @@ import ip
 class Ipv4(ip.Ip):
 
     _delimiter = '.'
-    LOOPBACK = [127, 0, 0, 1]
-    GLOBAL_BROADCAST = [255, 255, 255, 255]
 
     @property
     def address(self):
@@ -101,6 +99,6 @@ class Ipv4(ip.Ip):
 
 
     def __invert__(self):
-        return Ipv4(self ^ Ipv4(self.GLOBAL_BROADCAST))
+        return Ipv4(self ^ (2 ** 32 - 1))
 
 __all__ = ['Ipv4']
