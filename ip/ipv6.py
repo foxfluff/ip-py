@@ -2,17 +2,19 @@ from ip import Ip
 
 class Ipv6(Ip):
 
-    _delimiter = ':'
-    # technically speaking there is no global broadcast, need to find a better
-    # term for this.
-
     @property
     def address(self):
+        """Ipv6.address -> return address"""
         return super(Ipv6, self).address
 
     @address.setter
-    def address(self, address):
+    def address(self, address, delimiter = ":"):
+        """Ipv6.address = address
+        Assigns address"""
         def list_addr(addr):
+            """list_addr(addr)
+            Takes a list of digits representing an Ipv6 address and converts
+            it to a single long"""
             if len(addr) != 8:
                 raise ValueError('Expected 8 octet address, got %i in (%s)' %
                                  (len(addr), address))
@@ -38,6 +40,9 @@ class Ipv6(Ip):
             return _addr
 
         def string_addr(addr):
+            """string_addr(addr)
+            Takes a string representing an Ipv6 address, and converts it to a
+            single long"""
             _addr = addr.split(self._delimiter)
             if _addr[:2] == ['', ''] or _addr[-2:] == ['', '']:
                 # special case when '::' is on the outer most digit, causes
@@ -57,6 +62,7 @@ class Ipv6(Ip):
                     (self._delimiter * 2))
             return list_addr(_addr)
 
+        self._delimiter = delimiter
         if isinstance(address, str):
             self._address = string_addr(address)
         elif isinstance(address, tuple) or isinstance(address, list):
@@ -72,79 +78,80 @@ class Ipv6(Ip):
                 )
         pass
 
-
     def _hex_digit(self, digit):
         # >>> hex(65535)[2:].rjust(4,'0')
         # 'ffff'
         return hex(digit)[2:].rjust(4, '0')
 
-
     def _dec_digit(self, digit):
         # this seems silly
         return int(digit)
 
-
     def __init__(self, address):
+        """Ipv6(address) -> return Ipv6"""
         super(Ipv6, self).__init__(address)
 
-
     def __repr__(self):
+        """Ipv6.__repr__() <=> repr(Ipv6)"""
         return "%s('%s')" % ("Ipv6", str(self))
 
-
     def __str__(self):
+        """Ipv6.__str__() <=> str(Ipv6)
+        NOTE: This returns the fully expanded address in all lowercase hex"""
         # should probably implement shorthand version, probably in a seperate
         # funcion
         return self._delimiter.join(
             map(self._hex_digit, tuple(self))
             )
 
-
     def __iter__(self):
+        """Ipv6.__iter__() <=> iter(Ipv6)"""
         # GLORIOUS COPY PASTE/MINOR TWEAKS
         addr = []
         for digit in range(8):
             addr += [65535 & self.address >> (16 * (7 - digit))]
         return iter(map(self._dec_digit, addr))
 
-
     def __getitem__(self, index):
+        """Ipv6.__getitem__(index) <=> Ipv6[index] -> return int
+        Fetches a the digit specified according to 2 byte chunks.
+        Ipv6('1234:5678:9abc:ef01:2345:6789:abcd')[1] -> 5678"""
         return tuple(self)[index]
 
-
     def __add__(self, other):
+        """Ipv6.__add__(b) <=> Ipv6 + b -> return Ipv6"""
         return Ipv6(self.address + other)
 
-
     def __sub__(self, other):
+        """Ipv6.__sub__(b) <=> Ipv6 - b -> return Ipv6"""
         return Ipv6(self.address - other)
 
-
     def __and__(self, other):
+        """Ipv6.__and__(b) <=> Ipv6 & b -> return Ipv6"""
         return Ipv6(self.address & other)
 
-
     def __rand__(self, other):
+        """Ipv6.__rand__(b) <=> b & Ipv6 -> return Ipv6"""
         return self & other
 
-
     def __or__(self, other):
+        """Ipv6.__or__(b) <=> Ipv6 | b -> return Ipv6"""
         return Ipv6(self.address | other)
 
-
     def __ror__(self, other):
+        """Ipv6.__ror__(b) <=> b | Ipv6 -> return Ipv6"""
         return self | other
 
-
     def __xor__(self, other):
+        """Ipv6.__xor__(b) <=> Ipv6 ^ b -> return Ipv6"""
         return Ipv6(self.address ^ other)
 
-
     def __rxor__(self, other):
+        """Ipv6.__xor__(b) <=> b ^ Ipv6 -> return Ipv6"""
         return self ^ other
 
-
     def __invert__(self):
+        """Ipv6.__invert__() <=> ~Ipv6 -> return Ipv6"""
         return Ipv6(self ^ (2 ** 128 - 1))
 
 __all__ = ['Ipv6']
