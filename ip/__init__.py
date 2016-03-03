@@ -11,3 +11,6 @@ __author__ = 'foxfluff/luma'
 __url__ = 'https://github.com/foxfluff'
 
 __all__ = ['Ip', 'Ipv4', 'Ipv6']
+
+IPV4_LOOPBACK = Ipv4([127, 0, 0, 1])
+IPV4_GLOBAL_BROADCAST = Ipv4([255, 255, 255, 255])

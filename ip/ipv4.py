@@ -18,7 +18,7 @@ class Ipv4(ip.Ip):
             # [255, 255, 255, 255] -> 0b11111111 11111111 11111111 11111111
             _addr = 0
             for octet in range(4):
-                _addr += addr[octet] * 2 ** (8 * (3 - octet))
+                _addr += addr[octet] << (8 * (3 - octet))
             return _addr
 
         def string_addr(addr):
@@ -50,15 +50,15 @@ class Ipv4(ip.Ip):
 
 
     def __str__(self):
-        return ".".join(map(str,tuple(self)))
+        return self._delimiter.join(map(str,tuple(self)))
 
 
     def __iter__(self):
         # converts an int to a list
         # 0b11111111 11111111 11111111 11111111 -> [255, 255, 255, 255]
         addr = []
-        for i in range(4):
-            addr += [255 & self.address >> (8 * (3 - i))]
+        for octet in range(4):
+            addr += [255 & self.address >> (8 * (3 - octet))]
         return iter(map(int, addr))
 
 
@@ -97,5 +97,8 @@ class Ipv4(ip.Ip):
     def __rxor__(self, other):
         return self ^ other
 
+
+    def __invert__(self):
+        return Ipv4(self ^ (2 ** 32 - 1))
 
 __all__ = ['Ipv4']
