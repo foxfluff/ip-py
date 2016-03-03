@@ -34,13 +34,13 @@ print
 
 addr6_1 = ip.Ipv6('fe20:0:0:0:0:0:0:1')
 addr6_2 = ip.Ipv6('fe80::0:1')
-addr6_3 = ip.Ipv6('::ffff:ffff:ffff:ffff')
+addr6_3 = ip.Ipv6('ffff:ffff::0')
 
 print 'self.address', addr6_1.address, addr6_2.address, addr6_3.address
-print 'repr        ', repr(addr6_1), repr(addr6_2)
-print 'str         ', str(addr6_1), str(addr6_2)
-print 'list        ', list(addr6_1), list(addr6_2)
-print 'tuple       ', tuple(addr6_1), tuple(addr6_2)
+print 'repr        ', repr(addr6_1), repr(addr6_2), repr(addr6_3)
+print 'str         ', str(addr6_1), str(addr6_2), str(addr6_3)
+print 'list        ', list(addr6_1), list(addr6_2), list(addr6_3)
+print 'tuple       ', tuple(addr6_1), tuple(addr6_2), tuple(addr6_3)
 print 'ip1 + 5     ', addr6_1 + 5, type(addr6_1 + 5)
 print 'ip2 + 5     ', addr6_2 + 5, type(addr6_2 + 5)
 print 'ip1 - 5     ', addr6_1 - 5, type(addr6_1 - 5)
@@ -51,3 +51,4 @@ print 'ip1 ^ ip2   ', addr6_1 ^ addr6_2, type(addr6_1 ^ addr6_2)
 print 'ip1[0]      ', addr6_1[0]
 print 'ip2[0]      ', addr6_2[0]
 print '~ip3        ', ~addr6_3
+print
