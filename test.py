@@ -13,6 +13,7 @@ print
 
 addr4_1 = ip.Ipv4('192.168.0.1')
 addr4_2 = ip.Ipv4([172, 16, 0, 1])
+addr4_3 = ip.Ipv4((255, 255, 255, 0))
 
 print 'self.address', addr4_1.address, addr4_2.address
 print 'repr        ', repr(addr4_1), repr(addr4_2)
@@ -28,3 +29,5 @@ print 'ip1 & ip2   ', addr4_1 & addr4_2, type(addr4_1 & addr4_2)
 print 'ip1 ^ ip2   ', addr4_1 ^ addr4_2, type(addr4_1 ^ addr4_2)
 print 'ip1[0]      ', addr4_1[0]
 print 'ip2[0]      ', addr4_2[0]
+print 'ip3 ^ 255*  ', ip.Ipv4(addr4_3 ^ ip.Ipv4('255.255.255.255'))
+print '~ip3        ', ~addr4_3
