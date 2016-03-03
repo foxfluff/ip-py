@@ -98,4 +98,7 @@ class Ipv4(ip.Ip):
         return self ^ other
 
 
+    def __invert__(self):
+        return Ipv4(self ^ Ipv4([255, 255, 255, 255]))
+
 __all__ = ['Ipv4']
