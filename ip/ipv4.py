@@ -52,7 +52,7 @@ class Ipv4(ip.Ip):
 
 
     def __str__(self):
-        return ".".join(map(str,tuple(self)))
+        return self._delimiter.join(map(str,tuple(self)))
 
 
     def __iter__(self):
