@@ -2,6 +2,10 @@ import ip
 
 class Ipv4(ip.Ip):
 
+    # planned/desired features:
+    #  - Adding netmask gen/calc/tester (allow for easy error checking for valid
+    #    masks, or easy generation of masks using bit count/cidr notation
+
     @property
     def address(self):
         """Ipv4.address -> return address"""
