@@ -24,9 +24,7 @@ class Ipv4(ip.Ip):
                                  (len(addr), address))
             # converts a list into a single long
             # [255, 255, 255, 255] -> 0b11111111 11111111 11111111 11111111
-            _addr = 0
-            for octet in range(4):
-                _addr += addr[octet] << (8 * (3 - octet))
+            _addr = sum([addr[octet] << (8 * (3 - octet)) for octet in range(4)])
             return _addr
 
         def string_addr(addr):
@@ -68,9 +66,7 @@ class Ipv4(ip.Ip):
         """Ipv4.__iter__() <=> iter(Ipv4)"""
         # converts an int to a list
         # 0b11111111 11111111 11111111 11111111 -> [255, 255, 255, 255]
-        addr = []
-        for octet in range(4):
-            addr += [255 & self.address >> (8 * (3 - octet))]
+        addr = [255 & address >> (8 * (3 - octet)) for octet in range(4)]
         return iter(map(int, addr))
 
     def __getitem__(self, index):

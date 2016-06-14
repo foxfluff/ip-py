@@ -31,10 +31,12 @@ class Ipv6(Ip):
                 # convert to int for ease of use I suppose.
                 if isinstance(addr[digit], str):
                     _digit = int(addr[digit], 16)
-                elif (isinstance(addr[digit], int) or
-                    isinstance(addr[digit], long)):
-
+                elif (
+                    isinstance(addr[digit], int) or
+                    isinstance(addr[digit], long)
+                    ):
                     _digit = int(addr[digit])
+
                 _addr += _digit << (16 * (7 - digit))
 
             return _addr
@@ -107,9 +109,7 @@ class Ipv6(Ip):
     def __iter__(self):
         """Ipv6.__iter__() <=> iter(Ipv6)"""
         # GLORIOUS COPY PASTE/MINOR TWEAKS
-        addr = []
-        for digit in range(8):
-            addr += [65535 & self.address >> (16 * (7 - digit))]
+        addr = [65535 & self.address >> (16 * (7 - digit)) for digit in range(8)]
         return iter(map(self._dec_digit, addr))
 
     def __getitem__(self, index):
