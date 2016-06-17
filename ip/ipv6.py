@@ -109,7 +109,8 @@ class Ipv6(Ip):
     def __iter__(self):
         """Ipv6.__iter__() <=> iter(Ipv6)"""
         # GLORIOUS COPY PASTE/MINOR TWEAKS
-        addr = [65535 & self.address >> (16 * (7 - digit)) for digit in range(8)]
+        addr = [
+            65535 & self.address >> (16 * (7 - digit)) for digit in range(8)]
         return iter(map(self._dec_digit, addr))
 
     def __getitem__(self, index):
@@ -152,6 +153,14 @@ class Ipv6(Ip):
 
     def __invert__(self):
         """Ipv6.__invert__() <=> ~Ipv6 -> return Ipv6"""
+        # Documented behavior for ~ states that "The bitwise inversion of x is
+        # defined as -(x+1)", but this is only true for signed integers.
+        # Unsure if this should follow the 'official documented behavior' or
+        # provide the actual inversion of a 128 bit address
+        # https://docs.python.org/2/reference/expressions.html#unary-arithmetic-and-bitwise-operations
+
+        # Note: The current behavior is the actual inversion
+        # ~(ffff:ffff:ffff:ffff::) == ::ffff:ffff:ffff:ffff
         return Ipv6(self ^ (2 ** 128 - 1))
 
 __all__ = ['Ipv6']

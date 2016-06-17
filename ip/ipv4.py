@@ -24,7 +24,9 @@ class Ipv4(ip.Ip):
                                  (len(addr), address))
             # converts a list into a single long
             # [255, 255, 255, 255] -> 0b11111111 11111111 11111111 11111111
-            _addr = sum([addr[octet] << (8 * (3 - octet)) for octet in range(4)])
+            _addr = sum(
+                [addr[octet] << (8 * (3 - octet)) for octet in range(4)]
+                )
             return _addr
 
         def string_addr(addr):
@@ -109,6 +111,14 @@ class Ipv4(ip.Ip):
 
     def __invert__(self):
         """Ipv4.__invert__() <=> ~Ipv4 -> return Ipv4"""
+        # Documented behavior for ~ states that "The bitwise inversion of x is
+        # defined as -(x+1)", but this is only true for signed integers.
+        # Unsure if this should follow the 'official documented behavior' or
+        # provide the actual inversion of a 32 bit address
+        # https://docs.python.org/2/reference/expressions.html#unary-arithmetic-and-bitwise-operations
+
+        # Note: The current behavior is the actual inversion
+        # ~(255.0.0.0) == 0.255.255.255
         return Ipv4(self ^ (2 ** 32 - 1))
 
 __all__ = ['Ipv4']
